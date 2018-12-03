@@ -11,13 +11,13 @@ console.info("second = ", second);
 console.info("rest = ", rest);
 
 // Destructuring Object
-const name = {fName: "Dhaval", lName: "Dalal", salutation: 'Mr.'};
-const {fName: firstName, lName: lastName} = name;
+const name = {first: "Dhaval", last: "Dalal", salutation: 'Mr.'};
+const {first: firstName, last: lastName} = name;
 console.info(firstName);
 console.info(lastName);
 
 // Destructuring Function params
-function capitalize({fName: firstName, lName: lastName}){
+function capitalize({first: firstName, last: lastName}){
   return firstName.toUpperCase() + " " + lastName.toUpperCase();
 }
 console.info(capitalize(name));

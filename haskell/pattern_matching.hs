@@ -1,8 +1,8 @@
 import Data.Char (toUpper)
 
 data Name = Name { 
-  firstName :: String, 
-  lastName :: String,
+  first :: String, 
+  last :: String,
   salutation :: String
 } deriving (Show)
 
