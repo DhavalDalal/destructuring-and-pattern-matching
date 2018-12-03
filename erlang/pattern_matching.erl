@@ -7,6 +7,7 @@ capitalize(#name {first = FName, last = LName}) ->
 
 mid(A1, A2) -> (A1 + A2) / 2.
 
+% This version checks equality (P, P) - neat :)
 midpoint(P, P) -> P;
 midpoint(P1, {0, 0}) -> P1;
 midpoint({0, 0}, P2) -> P2;
