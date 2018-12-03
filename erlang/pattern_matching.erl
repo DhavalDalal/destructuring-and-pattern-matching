@@ -1,4 +1,5 @@
 #!/usr/bin/env escript
 
 main([]) ->
-  io:format("~p ~p!~n", [hello, world]).
+  io:format("~p ~p!~n", [hello, 3]).
+  
