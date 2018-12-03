@@ -16,7 +16,8 @@ console.info(lastName);
 
 // Destructuring Function params
 function midpoint([x1,y1], [x2,y2] = [0,0]) { 
-  return [(x1 + x2) / 2, (y1 + y2) / 2];
+  function mid(a1, a2) { return (a1 + a2) / 2; }
+  return [mid(x1, x2), mid(y1, y2)];
 }
 
 console.info(midpoint([2,3], [4,5]));
