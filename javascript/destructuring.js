@@ -2,11 +2,11 @@
 // Destructuring list (or use as n-Tuple)
 const list = [1,2,3,4,5,6]
 let [first, second] = list
-console.info(first);
-console.info(second);
+console.info("first = ", first);
+console.info("second = ", second);
 // Destructuring gives us a short-hand way of naming parts of the data-structure.
 [first, second, ...rest] = list
-console.info(rest);
+console.info("rest = ", rest);
 
 // Destructuring Object
 const name = {fName: "Dhaval", lName: "Dalal", salutation: 'Mr.'};
