@@ -1,10 +1,12 @@
 // In FP, Destructuring is about extracting data from the innards of any structure.
 // Destructuring list (or use as n-Tuple)
+// Show this first
 const list = [1,2,3,4,5,6]
 let [first, second] = list
 console.info("first = ", first);
 console.info("second = ", second);
 // Destructuring gives us a short-hand way of naming parts of the data-structure.
+// then show by Adding to the above ...rest
 [first, second, ...rest] = list
 console.info("rest = ", rest);
 
@@ -15,6 +17,12 @@ console.info(firstName);
 console.info(lastName);
 
 // Destructuring Function params
+function capitalize({fName: firstName, lName: lastName}){
+  return firstName.toUpperCase() + " " + lastName.toUpperCase();
+}
+console.info(capitalize(name));
+
+// Destructuring Function params
 function midpoint([x1,y1], [x2,y2] = [0,0]) { 
   function mid(a1, a2) { return (a1 + a2) / 2; }
   return [mid(x1, x2), mid(y1, y2)];
@@ -23,11 +31,7 @@ function midpoint([x1,y1], [x2,y2] = [0,0]) {
 console.info(midpoint([2,3], [4,5]));
 console.info(midpoint([2,3]));
 
-function capitalize({fName: firstName, lName: lastName}){
-  return firstName.toUpperCase() + " " + lastName.toUpperCase();
-}
-console.info(capitalize(name));
-
+// No need to show this - skip.
 // Destructuring Map - No direct way
 const map = new Map()
   .set('a', 2)
