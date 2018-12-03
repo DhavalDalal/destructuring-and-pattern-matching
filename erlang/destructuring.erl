@@ -11,13 +11,14 @@ main([]) ->
   % A = 20,
   
   % Destructuring List
-  [First,Second|Rest] = [1,2,3,4,5,6],
+  List = [1,2,3,4,5,6],
+  [First,Second|Rest] = List,
   io:format("~p, ~p, ~p~n", [First, Second, Rest]),
-  
+
   % Destructuring Map
-  #{ K := V } = M
-  [First,Second|Rest] = [1,2,3,4,5,6],
-  io:format("~p, ~p, ~p~n", [First, Second, Rest]),
+  Map = #{ "a" => 2, "b" => 4, "c" => 8 },
+  #{ "a" := V1, "c" := V3 } = Map,
+  io:format("~p, ~p~n", [V1, V3]),
   
   % Destructuring n-Tuples
   {X, Y} = {10, 20}, 
