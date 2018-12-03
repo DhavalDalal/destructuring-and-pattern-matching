@@ -39,7 +39,3 @@ console.info(...map);
 // and then destructure the list.
 const [[fKey, fVal], [sKey,sVal], [tKey,tVal]] = [...map]
 console.info(fKey, fVal, sKey, sVal, tKey, tVal);
-
-
-
-
