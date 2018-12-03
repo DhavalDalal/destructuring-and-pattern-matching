@@ -3,6 +3,7 @@
 (println a-list)
 
 ; Destructuring a list
+; Tuple can be represented using a List
 (println (let [[first second] a-list]
      [first, second]))
      
@@ -13,7 +14,6 @@
 
 
 ; Destructuring a map (Associative Destructuring)
-; Tuple can be represented using a Map
 (def a-name {:first "Dhaval" :last "Dalal" :salutation "Mr."})
 
 (println a-name)
@@ -22,6 +22,12 @@
       {fname :first lname :last salutation :salutation} a-name
      ]
   (println fname lname))
-    
 
+(require '[clojure.string :as string])
 
+(defn capitalize [{fname :first lname :last}] (str (string/upper-case fname) " " (string/upper-case lname)))
+
+(println (capitalize a-name))
+
+; Idiomatic Clojure does not have pattern matching like that in Scala, 
+; but we can use multi-methods to achieve that.
