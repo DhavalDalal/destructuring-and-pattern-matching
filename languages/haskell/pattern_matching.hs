@@ -32,8 +32,8 @@ main = do
   let name = Name "Dhaval" "Dalal" "Mr."
   print $ name
   print $ capitalize name
-  print $ midpoint (2,3) (4,5)
+  print $ midpoint (0,0) (0,0)
   print $ midpoint (2,3) (0,0)
-  print $ midpoint (0,0) (8,9)
-  print $ midpoint (4,5) (4,5)
+  print $ midpoint (0,0) (4,5)
+  print $ midpoint (2,3) (4,5)
   print "DONE"

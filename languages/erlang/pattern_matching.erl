@@ -17,8 +17,8 @@ main([]) ->
   Name = #name {first = "Dhaval", last = "Dalal", salutation = "Mr."},
   io:format("~p~n", [Name]),
   io:format("~p~n", [capitalize(Name)]),
-  io:format("~p~n", [midpoint({2,3}, {4,5})]),
-  io:format("~p~n", [midpoint({0,0}, {4,5})]),
+  io:format("~p~n", [midpoint({0,0}, {0,0})]),
   io:format("~p~n", [midpoint({2,3}, {0,0})]),
-  io:format("~p~n", [midpoint({2,3}, {2,3})]).
+  io:format("~p~n", [midpoint({0,0}, {4,5})]),
+  io:format("~p~n", [midpoint({2,3}, {4,5})]).
   

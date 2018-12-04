@@ -39,7 +39,7 @@ def midpoint(p1: Point, p2: Point): Point = {
   }
 }
 
-println(midpoint((2,3), (4,5)))
-println(midpoint((0,0), (4,5)))
+println(midpoint((0,0), (0,0)))
 println(midpoint((2,3), (0,0)))
-println(midpoint((2,3), (2,3)))
+println(midpoint((0,0), (4,5)))
+println(midpoint((2,3), (4,5)))
