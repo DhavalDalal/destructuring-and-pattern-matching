@@ -1,6 +1,10 @@
+; Multi-methods can be used to solve this problem
+; Here is our dispatch function
 (defmulti beats
   (fn [e1 e2] [e1 e2]))
 
+; We’ll use keys :rock  :paper and :scissor
+; to represent the three choices.
 (defmethod beats [:paper :scissor] [e1 e2] false)
 (defmethod beats [:paper :rock] [e1 e2] true)
 (defmethod beats [:scissor :paper] [e1 e2] true)
@@ -9,12 +13,12 @@
 (defmethod beats [:rock :scissor] [e1 e2] true)
 (defmethod beats :default [e1 e2] false)
 
-(println "paper beats paper? "   (beats :paper :paper))
-(println "paper beats scissor? " (beats :paper :scissor))
-(println "paper beats rock? "    (beats :paper :rock))
-(println "scissor beats paper? "  (beats :scissor :paper))
-(println "scissor beats scissor? "(beats :scissor :scissor))
-(println "scissor beats rock? "   (beats :scissor :rock))
-(println "rock beats paper? "     (beats :rock :paper))
-(println "rock beats scissor? "   (beats :rock :scissor))
-(println "rock beats rock? "      (beats :rock :rock))
+(println "paper beats paper? "     (beats :paper :paper))
+(println "paper beats scissor? "   (beats :paper :scissor))
+(println "paper beats rock? "      (beats :paper :rock))
+(println "scissor beats paper? "   (beats :scissor :paper))
+(println "scissor beats scissor? " (beats :scissor :scissor))
+(println "scissor beats rock? "    (beats :scissor :rock))
+(println "rock beats paper? "      (beats :rock :paper))
+(println "rock beats scissor? "    (beats :rock :scissor))
+(println "rock beats rock? "       (beats :rock :rock))

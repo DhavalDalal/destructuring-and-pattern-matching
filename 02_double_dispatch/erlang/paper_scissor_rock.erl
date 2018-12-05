@@ -1,5 +1,7 @@
 #!/usr/bin/env escript
 
+% We’ll use  atoms  rock  paper scissor
+% to represent the three choices.
 beats(paper, scissor) -> false;
 beats(paper, rock) -> true;
 beats(scissor, paper) -> true;

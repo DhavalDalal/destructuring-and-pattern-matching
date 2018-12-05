@@ -1,5 +1,7 @@
+-- We’ll use  ADT Element Rock  Paper Scissor
+-- to represent the three choices.
 data Element = Paper | Scissor | Rock 
-  deriving (Show) 
+  deriving (Show)
 
 beats :: Element -> Element -> Bool
 beats Paper Scissor = False
@@ -21,4 +23,4 @@ main = do
   print $ "rock beats paper? "     ++ show (Rock `beats` Paper)
   print $ "rock beats scissor? "   ++ show (Rock `beats` Scissor)
   print $ "rock beats rock? "      ++ show (Rock `beats` Rock)
-  
+ 

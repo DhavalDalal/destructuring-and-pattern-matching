@@ -1,6 +1,7 @@
 sealed trait Element {
   def beats(other: Element): Boolean
 }
+
 case object Paper extends Element {
   def beats(other: Element): Boolean = other match {
     case Scissor => false
