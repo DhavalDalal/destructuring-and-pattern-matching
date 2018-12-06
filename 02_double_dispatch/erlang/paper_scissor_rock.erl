@@ -2,22 +2,22 @@
 
 % We’ll use  atoms  rock  paper scissor
 % to represent the three choices.
-beats(paper, scissor) -> false;
-beats(paper, rock) -> true;
-beats(scissor, paper) -> true;
-beats(scissor, rock) -> false;
-beats(rock, paper) -> false;
-beats(rock, scissor) -> true;
-beats(E, E) -> false.
+beats(paper, scissor) -> "paper loses";
+beats(paper, rock) -> "paper wins";
+beats(scissor, paper) -> "scissor wins";
+beats(scissor, rock) -> "scissor loses";
+beats(rock, paper) -> "rock wins";
+beats(rock, scissor) -> "rock loses";
+beats(E, E) -> "draw".
   
 main([]) ->
-  io:format("~p ~p~n", ["paper beats paper?", beats(paper, paper)]),
-  io:format("~p ~p~n", ["paper beats scissor?", beats(paper, scissor)]),
-  io:format("~p ~p~n", ["paper beats rock?", beats(paper, rock)]),
-  io:format("~p ~p~n", ["scissor beats paper?", beats(scissor, paper)]),
-  io:format("~p ~p~n", ["scissor beats scissor?", beats(scissor, scissor)]),
-  io:format("~p ~p~n", ["scissor beats rock?", beats(scissor, rock)]),
-  io:format("~p ~p~n", ["rock beats paper?", beats(rock, paper)]),
-  io:format("~p ~p~n", ["rock beats scissor?", beats(rock, scissor)]),
-  io:format("~p ~p~n", ["rock beats rock?", beats(rock, rock)]).
+  io:format("~s ~s~n", ["paper beats paper =", beats(paper, paper)]),
+  io:format("~s ~s~n", ["paper beats scissor =", beats(paper, scissor)]),
+  io:format("~s ~s~n", ["paper beats rock =", beats(paper, rock)]),
+  io:format("~s ~s~n", ["scissor beats paper =", beats(scissor, paper)]),
+  io:format("~s ~s~n", ["scissor beats scissor =", beats(scissor, scissor)]),
+  io:format("~s ~s~n", ["scissor beats rock =", beats(scissor, rock)]),
+  io:format("~s ~s~n", ["rock beats paper =", beats(rock, paper)]),
+  io:format("~s ~s~n", ["rock beats scissor =", beats(rock, scissor)]),
+  io:format("~s ~s~n", ["rock beats rock =", beats(rock, rock)]).
   

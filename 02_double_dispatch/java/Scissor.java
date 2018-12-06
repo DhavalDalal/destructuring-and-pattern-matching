@@ -1,13 +1,13 @@
 public class Scissor implements Beatable {
 	@Override
-	public boolean beats(Beatable other) {
+	public String beats(Beatable other) {
 		if (other.getClass() == Rock.class) {
-			return false;
+			return "scissor loses";
 		}
 
 		if (other.getClass() == Paper.class) {
-			return true;
+			return "scissor wins";
 		}
-		return false;
+		return "draw";
 	}
 }
