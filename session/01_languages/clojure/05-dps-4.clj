@@ -19,7 +19,6 @@
 (let [{fname :first lname :last salutation :salutation} a-name]
   (println fname lname))
 
-
 (defn capitalize [{fname :first lname :last}] 
   (str (.toUpperCase fname) " " (.toUpperCase lname)))
 
@@ -34,8 +33,8 @@
   ; library (not a part of standard distribution).
   (fn [x y] 
     (cond (= x y [0 0]) [:zero :zero]
-          (= x [0 0]) [:zero :any]
-          (= y [0 0]) [:any :zero]
+          (= x [0 0])   [:zero :any ]
+          (= y [0 0])   [:any  :zero]
           :else [x y])))
           
 (defmethod mid-point [:zero :zero] [x y] [0 0])
