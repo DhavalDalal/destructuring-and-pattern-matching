@@ -3,12 +3,12 @@
 % We’ll use  atoms  rock  paper scissor
 % to represent the three choices.
 beats(paper, scissor) -> "paper loses";
-beats(paper, rock) -> "paper wins";
+beats(paper, rock)    -> "paper wins";
 beats(scissor, paper) -> "scissor wins";
-beats(scissor, rock) -> "scissor loses";
-beats(rock, paper) -> "rock wins";
-beats(rock, scissor) -> "rock loses";
-beats(E, E) -> "draw".
+beats(scissor, rock)  -> "scissor loses";
+beats(rock, paper)    -> "rock wins";
+beats(rock, scissor)  -> "rock loses";
+beats(E, E)           -> "draw".
   
 main([]) ->
   io:format("~s ~s~n", ["paper beats paper =", beats(paper, paper)]),
@@ -20,4 +20,3 @@ main([]) ->
   io:format("~s ~s~n", ["rock beats paper =", beats(rock, paper)]),
   io:format("~s ~s~n", ["rock beats scissor =", beats(rock, scissor)]),
   io:format("~s ~s~n", ["rock beats rock =", beats(rock, rock)]).
-  

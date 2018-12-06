@@ -10,7 +10,7 @@ beats Scissor Paper = "scissor wins"
 beats Scissor Rock  = "scissor loses"
 beats Rock Paper    = "rock loses"
 beats Rock Scissor  = "rock wins"
-beats _ _       = "draw"
+beats _ _           = "draw"
 
 main :: IO ()
 main = do
