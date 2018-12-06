@@ -46,7 +46,7 @@
     [(mid [x1 x2]) (mid [y1 y2])]))
 
 
-(println (mid-point [0 0] [0 0]))
-(println (mid-point [2 3] [0 0]))
-(println (mid-point [0 0] [4 5]))
 (println (mid-point [2 3] [4 5]))
+(println (mid-point [0 0] [4 5]))
+(println (mid-point [2 3] [0 0]))
+(println (mid-point [0 0] [0 0]))
