@@ -1,0 +1,13 @@
+Problem Statement:
+
+How will you enhance this code to include drawing these objects on?
+* OpenGL
+* Direct3D
+
+Possible Solutions:
+
+* Introduce Create drawOpenGL() and drawDirect3D() methods in Shape3d. 
+  * We have now made shapes aware of the "drawing platform" specific code.  Though they are drawable objects, but how to draw would be present inside them.
+  * It does not scale to more drawing platforms.  We have to add to hierarchy everytime.
+
+* Use Visitor Pattern

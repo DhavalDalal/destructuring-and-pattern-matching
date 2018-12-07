@@ -1,4 +1,4 @@
-public class Cylinder implements Element {
+public class Cylinder implements Shape3d {
 	private final double baseRadius;
 	private final double height;
 
@@ -6,8 +6,8 @@ public class Cylinder implements Element {
 		this.baseRadius = baseRadius;
 		this.height = height;
 	}
-
-	public double area() {
+  @Override
+	public double surfaceArea() {
 		return 2 * baseArea() + baseCircumference() * height;
 	}
 
@@ -19,19 +19,15 @@ public class Cylinder implements Element {
 		return Math.PI * Math.pow(baseRadius, 2);
 	}
 
-	public double capacity() {
+  @Override
+	public double volume() {
 		return baseArea() * height;
 	}
 
-	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
-	}
-	
 	public static void main(String[] args) {
 		Cylinder c = new Cylinder(10, 10);
-		System.out.println(c.area());
-		System.out.println(c.capacity());
+		System.out.println(c.surfaceArea());
+		System.out.println(c.volume());
 	}
 
 }
