@@ -9,9 +9,11 @@ mid(A1, A2) -> (A1 + A2) / 2.
 
 % This version checks equality (P, P) - neat :)
 midpoint(P, P) -> P;
-midpoint(P1, {0, 0}) -> P1;
-midpoint({0, 0}, P2) -> P2;
-midpoint({X1, Y1}, {X2, Y2}) -> {mid(X1, X2), mid(Y1, Y2)}.
+midpoint(P1, {0,0}) -> P1;
+midpoint({0,0}, P2) -> P2;
+midpoint({X1,Y1}, {X2,Y2}) ->
+  Mid = fun (A1, A2) -> (A1 + A2) / 2 end,
+  {Mid(X1, X2), Mid(Y1, Y2)}.
 
 main([]) ->
   Name = #name {first = "Dhaval", last = "Dalal", salutation = "Mr."},

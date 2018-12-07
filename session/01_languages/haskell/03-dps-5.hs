@@ -22,7 +22,8 @@ mid_point p1@(x1,y1) p2@(x2,y2)
 
 main :: IO ()
 main = do
-  let list = [1..4]
+  -- let list = [1..4]
+  let list = 1:2:3:4:[]  
   let (first:second:rest) = list
   print $ first
   print $ second
