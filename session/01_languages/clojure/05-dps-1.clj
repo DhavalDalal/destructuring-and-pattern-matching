@@ -1,4 +1,4 @@
-(def a-list [1 2 3 4 5])
+(def a-list [1 2 3 4])
 
 (println a-list)
 
