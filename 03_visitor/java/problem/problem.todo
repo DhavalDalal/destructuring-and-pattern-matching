@@ -13,12 +13,12 @@ Problem Statement:
          |                        |                       |                |
   +---------------+       +---------------+       +---------------+        |
   |   Cylinder    |       |     Sphere    |       |CompositeShape |        |
-  +---------------+       +---------------+       +---------------+        |
+  +---------------+       +---------------+       +---------------+ *      |
   | surfaceArea() |       | surfaceArea() |       | surfaceArea() |--------+
   | volume()      |       | volume()      |       | volume()      |
   +---------------+       +---------------+       +---------------+
 
 
-How will you enhance this code to include drawing these objects on following platform?
+How will you enhance this code to include rendering these objects on following platforms?
 * OpenGL
 * Direct3D
