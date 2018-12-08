@@ -11,7 +11,7 @@
   (println [first, second, rest]))
 
 ; Destructuring a map (Associative Destructuring)
-(def a-name {:first "Dhaval" :last "Dalal" :salutation "Mr."})
+(def a-name {:first "Toto" :last "Mookey" :salutation "Mr."})
 
 (println a-name)
 
