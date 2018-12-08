@@ -1,5 +1,24 @@
 Problem Statement:
+                 
+                          +---------------+
+                          |    Shape3d    |
+                          +---------------+
+                          | surfaceArea() |<-------------------------------+
+                          | volume()      |                                |
+                          +---------------+                                |
+                                  ^                                        |
+                                 / \                                       |
+                                  |                                        |
+         +------------------------+-----------------------+                |
+         |                        |                       |                |
+  +---------------+       +---------------+       +---------------+        |
+  |   Cylinder    |       |     Sphere    |       |CompositeShape |        |
+  +---------------+       +---------------+       +---------------+        |
+  | surfaceArea() |       | surfaceArea() |       | surfaceArea() |--------+
+  | volume()      |       | volume()      |       | volume()      |
+  +---------------+       +---------------+       +---------------+
 
-How will you enhance this code to include drawing these objects on?
+
+How will you enhance this code to include drawing these objects on following platform?
 * OpenGL
 * Direct3D
