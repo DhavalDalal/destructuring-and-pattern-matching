@@ -34,22 +34,3 @@
 (println (surface-area sphere)) ;1256.63
 (println (surface-area composite)) 
 (println (surface-area 2)) ;nil
-
-(defrecord OpenGL [])
-(defrecord SVG [])
-
-(defmulti render 
-  (fn [platform shape] [(class platform) (class shape)]))
-  
-(defmethod render [OpenGL Cylinder] [platform shape] (println "OpenGL: Rendering Cylinder"))
-(defmethod render [OpenGL Sphere]   [platform shape] (println "OpenGL: Rendering Sphere"))
-(defmethod render [SVG Cylinder] [platform shape] (println "SVG: Rendering Cylinder"))
-(defmethod render [SVG Sphere]   [platform shape] (println "SVG: Rendering Sphere"))
-(defmethod render [Object clojure.lang.IPersistentVector] [platform shapes] 
-  (println "Rendering Composite...")
-  (doall (map #(render platform %) shapes)))
-(defmethod render :default [platform shape] nil)
-
-(render (OpenGL.) composite)
-(render (SVG.) composite)
-(println "DONE")
