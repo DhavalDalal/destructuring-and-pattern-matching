@@ -26,7 +26,7 @@ public class CompositeShape implements Shape3d, Element {
 	public static void main(String[] args) {
 		Shape3d cylinder = new Cylinder(10, 10);
 		Shape3d sphere = new Sphere(10);
-    CompositeShape composite = new CompositeShape(cylinder, sphere);
+    Shape3d composite = new CompositeShape(cylinder, sphere);
     System.out.println(composite.surfaceArea());
     System.out.println(composite.volume());
 	}

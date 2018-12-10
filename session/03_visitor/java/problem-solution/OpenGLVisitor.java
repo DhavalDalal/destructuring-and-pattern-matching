@@ -13,7 +13,7 @@ public class OpenGLVisitor implements Visitor {
 	public static void main(String[] args) {
 		Sphere sphere = new Sphere(10);
 		Cylinder cylinder = new Cylinder(10, 10);
-		OpenGLVisitor openGL = new OpenGLVisitor();
+		Visitor openGL = new OpenGLVisitor();
     CompositeShape composite = new CompositeShape(cylinder, sphere);
 		composite.accept(openGL);
 	}

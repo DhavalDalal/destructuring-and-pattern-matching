@@ -23,19 +23,6 @@ surfaceArea(List = [_|_]) ->
 surfaceArea([]) -> 0;
 surfaceArea(_) -> not_ok.
 
-render(openGL, #cylinder {}) ->
-  io:format("~p~n", ["OpenGL: rendering cylinder"]);
-render(openGL, #sphere {}) ->
-  io:format("~p~n", ["OpenGL: rendering sphere"]);
-render(svg, #cylinder {}) ->
-  io:format("~p~n", ["SVG: rendering cylinder"]);
-render(svg, #sphere {}) ->
-  io:format("~p~n", ["SVG: rendering sphere"]);
-render(Platform, List = [_|_]) -> 
-  io:format("Rendering Composite...~n"),
-  lists:foreach(fun(Shape) -> render(Platform, Shape) end, List);
-render(_, _) -> not_ok.
-
 main([]) ->
   Cylinder = #cylinder {baseRadius = 10, height = 10},
   Sphere = #sphere {radius = 10},
@@ -48,6 +35,4 @@ main([]) ->
   io:format("Surface Area of Sphere ~p~n", [surfaceArea(Sphere)]),
   io:format("Surface Area of Composite ~p~n", [surfaceArea(Composite)]),
   % io:format("Surface Area of 2 ~p~n", [surfaceArea(2)]),
-  io:format("~p~n", [render(openGL, Composite)]),
-  io:format("~p~n", [render(svg, Composite)]),
   io:format("DONE").

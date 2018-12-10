@@ -1,0 +1,53 @@
+                          +---------------+
+                          |    Shape3d    |
+                          +---------------+
+                          | surfaceArea() |<-------------------------------+
+                          | volume()      |                                |
+                          +---------------+                                |
+                                  ^                                        |
+                                 / \                                       |
+                                  |                                        |
+         +------------------------+-----------------------+                |
+         |                        |                       |                |
+  +---------------+       +---------------+       +---------------+        |
+  |   Cylinder    |       |     Sphere    |       |CompositeShape |        |
+  +---------------+       +---------------+       +---------------+ *      |
+  | surfaceArea() |       | surfaceArea() |       | surfaceArea() |--------+
+  | volume()      |       | volume()      |       | volume()      |
+  +---------------+       +---------------+       +---------------+
+
+
+Problem Statement:
+
+OpenGL and SVG use surfaceArea() and volume() to render these objects on their platforms. 
+How will you enhance this code to include rendering these objects on following platforms?
+* OpenGL
+* SVG
+
+Possible Solutions:
+
+* Introduce renderOpenGL() and renderSVG() methods in Shape3d. 
+  * We have now made shapes aware of the "drawing platform" specific code.  Though they are renderable objects, but how to render would be present inside them.
+  * It does not scale to more rendering platforms.  We have to add to hierarchy everytime.
+
+* Use Visitor Pattern
+
+                      +-----------------+                                    +-----------------+
+                      |     Shape3d     |----------------------------------->|     Visitor     |
+                      +-----------------+                                    +-----------------+
+                      | surfaceArea()   |                                    | visit(Cylinder) |
+                      | volume()        |<-----------------------+           | visit(Sphere)   |
+                      | accept(Visitor) |                        |           +-----------------+   
+                      +-----------------+                        |                    ^    
+                              ^                                  |                   / \
+                             / \                                 |                    |
+                              |                                  |            +--------------------+
+         +--------------------+----------------------+           |            |                    |     
+         |                    |                      |           |   +-----------------+  +-----------------+   
+ +-----------------+  +-----------------+  +-----------------+   |   |  OpenGLVisitor  |  |    SVGVisitor   |   
+ |     Cylinder    |  |      Sphere     |  |  CompositeShape |   |   +-----------------+  +-----------------+   
+ +-----------------+  +-----------------+  +-----------------+ * |   | visit(Cylinder) |  | visit(Cylinder) |   
+ | surfaceArea()   |  | surfaceArea()   |  | surfaceArea()   |---+   | visit(Sphere)   |  | visit(Sphere)   |   
+ | volume()        |  | volume()        |  | volume()        |       +-----------------+  +-----------------+   
+ | accept(Visitor) |  | accept(Visitor) |  | accept(Visitor) |                                               
+ +-----------------+  +-----------------+  +-----------------+                                               

@@ -25,19 +25,3 @@ val cylinder = Cylinder(10, 10)
 val composite = CompositeShape(List(cylinder, sphere))
 println(composite.surfaceArea())
 println(composite.volume())
-
-trait Platform
-case object OpenGL extends Platform
-case object SVG extends Platform
-
-def render(p: Platform, s: Shape3d): Unit = (p, s) match {
-  case (OpenGL, Cylinder(baseRadius, height)) => println("OpenGL: rendering cylinder")
-  case (OpenGL, Sphere(radius)) => println("OpenGL: rendering sphere")
-  case (SVG, Cylinder(baseRadius, height)) => println("SVG: rendering cylinder")
-  case (SVG, Sphere(radius)) => println("SVG: rendering sphere")
-  case (_, CompositeShape(shapes)) => shapes.foreach(render(p, _))
-  case (_, _) => println()
-}
-
-render(OpenGL, composite)
-render(SVG, composite)
