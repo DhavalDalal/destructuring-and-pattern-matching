@@ -1,9 +1,10 @@
 Destructuring and Pattern Matching:
 
-* Destructuring
-* Pattern Matching
+* What are they? 
+* How are they different and related?
 * Double Dispatch
-* Subsuming Visitor Pattern
+* Subsuming the Visitor Pattern
+* Q & A
 
 Code Examples:
 
