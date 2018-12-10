@@ -20,23 +20,24 @@ case class CompositeShape(shapes: List[Shape3d]) extends Shape3d {
   def volume(): Double = shapes.map(_.volume()).sum
 }
 
-def renderOpenGL(s: Shape3d): Unit = s match {
-  case Cylinder(baseRadius, height) => println("OpenGL: rendering cylinder")
-  case Sphere(radius) => println("OpenGL: rendering sphere")
-  case CompositeShape(shapes) => shapes foreach renderOpenGL
-}
-
-def renderDirect3D(s: Shape3d): Unit = s match {
-  case Cylinder(baseRadius, height) => println("Direct3D: rendering cylinder")
-  case Sphere(radius) => println("Direct3D: rendering sphere")
-  case CompositeShape(shapes) => shapes foreach renderDirect3D
-}
-
 val sphere = Sphere(10)
 val cylinder = Cylinder(10, 10)
 val composite = CompositeShape(List(cylinder, sphere))
 println(composite.surfaceArea())
 println(composite.volume())
 
-renderOpenGL(composite)
-renderDirect3D(composite)
+trait Platform
+case object OpenGL extends Platform
+case object SVG extends Platform
+
+def render(p: Platform, s: Shape3d): Unit = (p, s) match {
+  case (OpenGL, Cylinder(baseRadius, height)) => println("OpenGL: rendering cylinder")
+  case (OpenGL, Sphere(radius)) => println("OpenGL: rendering sphere")
+  case (SVG, Cylinder(baseRadius, height)) => println("SVG: rendering cylinder")
+  case (SVG, Sphere(radius)) => println("SVG: rendering sphere")
+  case (_, CompositeShape(shapes)) => shapes.foreach(render(p, _))
+  case (_, _) => println()
+}
+
+render(OpenGL, composite)
+render(SVG, composite)

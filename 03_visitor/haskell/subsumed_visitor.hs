@@ -21,20 +21,16 @@ surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * he
 surfaceArea (Sphere radius) = 4.0 * pi * radius ^^ 2
 surfaceArea (CompositeShape ss) = sum [ v | v <- map (\s -> surfaceArea s) ss ]
 
-renderOpenGL :: Shape -> IO ()
-renderOpenGL (Cylinder baseRadius height) = print "OpenGL: rendering cylinder"
-renderOpenGL (Sphere radius) = print "OpenGL: rendering sphere"
-renderOpenGL (CompositeShape ss) = do
-  sequence [renderOpenGL s | s <- ss]
-  return ()
+data Platform = OpenGL | SVG
 
-renderDirect3D :: Shape -> IO ()
-renderDirect3D (Cylinder baseRadius height) = print "Direct3D: rendering cylinder"
-renderDirect3D (Sphere radius) = print "Direct3D: rendering sphere"
-renderDirect3D (CompositeShape ss) = do
-  sequence [renderDirect3D s | s <- ss]
+render :: Platform -> Shape -> IO ()
+render OpenGL (Cylinder baseRadius height) = print "OpenGL: rendering cylinder"
+render OpenGL (Sphere radius) = print "OpenGL: rendering sphere"
+render SVG (Cylinder baseRadius height) = print "SVG: rendering cylinder"
+render SVG (Sphere radius) = print "SVG: rendering sphere"
+render platform (CompositeShape ss) = do
+  sequence [render platform s | s <- ss]
   return ()
-  
 
 main :: IO ()
 main = do
@@ -47,5 +43,5 @@ main = do
   print $ "Surface Area of Cylinder " ++ show (surfaceArea cylinder)
   print $ "Surface Area of Sphere " ++ show (surfaceArea sphere)
   print $ "Surface Area of CompositeShape " ++ show (surfaceArea composite)
-  renderOpenGL composite
-  renderDirect3D composite
+  render OpenGL composite
+  render SVG composite

@@ -1,32 +1,24 @@
-(defrecord Cylinder [baseRadius, height])
+(defrecord Cylinder [baseRadius height])
 (defrecord Sphere [radius])
 
 (defmulti volume class)
-
 (defmethod volume Cylinder [{:keys [baseRadius height]}]
   (* (. Math PI) (Math/pow baseRadius 2) height))
-  
 (defmethod volume Sphere [{:keys [radius]}] 
   (* (double (/ 4 3)) (. Math PI) (Math/pow radius 3)))
-
 (defmethod volume clojure.lang.IPersistentVector [shapes]
   (reduce + 0 (map volume shapes)))
-
 (defmethod volume :default [s] nil)
 
 (defmulti surface-area class)
-
 (defmethod surface-area Cylinder [{:keys [baseRadius height]}]
 	(let [base-area (* (. Math PI) (Math/pow baseRadius 2))
 	    base-circumference (* 2 (. Math PI) baseRadius)]
 	    (+ (* 2 base-area) (* base-circumference height))))
-  
 (defmethod surface-area Sphere [{:keys [radius]}] 
   (* 4 (. Math PI) (Math/pow radius 2)))
-
 (defmethod surface-area clojure.lang.IPersistentVector [shapes]
   (reduce + 0 (map surface-area shapes)))
-
 (defmethod surface-area :default [s] nil)
 
 (def cylinder (Cylinder. 10 10))
@@ -43,22 +35,21 @@
 (println (surface-area composite)) 
 (println (surface-area 2)) ;nil
 
-(defmulti render-opengl class)
-(defmethod render-opengl Cylinder [args] (println "OpenGL: Rendering Cylinder"))
-(defmethod render-opengl Sphere [args] (println "OpenGL: Rendering Sphere"))
-(defmethod render-opengl clojure.lang.IPersistentVector [shapes] 
+(defrecord OpenGL [])
+(defrecord SVG [])
+
+(defmulti render 
+  (fn [platform shape] [(class platform) (class shape)]))
+  
+(defmethod render [OpenGL Cylinder] [platform shape] (println "OpenGL: Rendering Cylinder"))
+(defmethod render [OpenGL Sphere]   [platform shape] (println "OpenGL: Rendering Sphere"))
+(defmethod render [SVG Cylinder] [platform shape] (println "SVG: Rendering Cylinder"))
+(defmethod render [SVG Sphere]   [platform shape] (println "SVG: Rendering Sphere"))
+(defmethod render [Object clojure.lang.IPersistentVector] [platform shapes] 
   (println "Rendering Composite...")
-  (doall (map render-opengl shapes)))
-(defmethod render-opengl :default [s] nil)
+  (doall (map #(render platform %) shapes)))
+(defmethod render :default [platform shape] nil)
 
-(render-opengl composite)
-
-(defmulti render-direct3d class)
-(defmethod render-direct3d Cylinder [args] (println "Direct3d: Rendering Cylinder"))
-(defmethod render-direct3d Sphere [args] (println "Direct3d: Rendering Sphere"))
-(defmethod render-direct3d clojure.lang.IPersistentVector [shapes] 
-  (println "Rendering Composite...")
-  (doall (map render-direct3d shapes)))
-(defmethod render-direct3d :default [s] nil)
-
-(render-direct3d composite)
+(render (OpenGL.) composite)
+(render (SVG.) composite)
+(println "DONE")
