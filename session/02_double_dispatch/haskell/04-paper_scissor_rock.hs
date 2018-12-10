@@ -1,5 +1,5 @@
--- We’ll use ADT Element Rock  Paper Scissor
--- to represent the three choices.
+-- We’ll use ADT Element to represent 
+-- the three choices Rock Paper Scissor.
 data Element = Paper | Scissor | Rock 
   deriving (Show)
 
