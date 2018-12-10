@@ -1,14 +1,14 @@
-(def a-list [1 2 3 4])
-
-(println a-list)
+; (def a-list [1 2 3 4])
+;
+; (println a-list)
 
 ; Destructuring a list
 ; Tuple can be represented using a List
-(let [[first second] a-list] 
-  (println [first, second]))
-     
-(let [[first second & rest] a-list]
-  (println [first, second, rest]))
+; (let [[first second] a-list]
+;   (println [first second]))
+;
+; (let [[first second & rest] a-list]
+;   (println [first second rest]))
 
 ; Destructuring a map (Associative Destructuring)
 (def a-name {:first "Toto" :last "Mookey" :salutation "Mr."})
@@ -18,7 +18,9 @@
 (let [{fname :first lname :last salutation :salutation} a-name]
   (println fname lname))
 
+(require '[clojure.string :refer [upper-case]])
+  
 (defn capitalize [{fname :first lname :last}] 
-  (str (.toUpperCase fname) " " (.toUpperCase lname)))
+  (str (upper-case fname) " " (upper-case lname)))
 
 (println (capitalize a-name))
