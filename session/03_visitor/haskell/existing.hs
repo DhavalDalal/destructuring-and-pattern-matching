@@ -10,7 +10,7 @@ data Shape = Cylinder {
 volume :: Shape -> Double
 volume (Cylinder baseRadius height) = pi * baseRadius ^^ 2 * height
 volume (Sphere radius) = 4.0 / 3.0 * pi * radius ^^ 3
-volume (CompositeShape ss) = sum [ v | v <- map (\s -> volume s) ss ]
+volume (CompositeShape ss) = sum $ map volume ss
 
 surfaceArea :: Shape -> Double
 surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * height
@@ -19,7 +19,7 @@ surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * he
     baseCircumference = 2 * pi * baseRadius
 
 surfaceArea (Sphere radius) = 4.0 * pi * radius ^^ 2
-surfaceArea (CompositeShape ss) = sum [ v | v <- map (\s -> surfaceArea s) ss ]
+surfaceArea (CompositeShape ss) = sum $ map surfaceArea ss
 
 main :: IO ()
 main = do

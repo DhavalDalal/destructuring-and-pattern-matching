@@ -10,7 +10,7 @@ data Shape = Cylinder {
 volume :: Shape -> Double
 volume (Cylinder baseRadius height) = pi * baseRadius ^^ 2 * height
 volume (Sphere radius) = 4.0 / 3.0 * pi * radius ^^ 3
-volume (CompositeShape ss) = sum [ v | v <- map (\s -> volume s) ss ]
+volume (CompositeShape ss) = sum $ map volume ss
 
 surfaceArea :: Shape -> Double
 surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * height
@@ -19,7 +19,7 @@ surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * he
     baseCircumference = 2 * pi * baseRadius
 
 surfaceArea (Sphere radius) = 4.0 * pi * radius ^^ 2
-surfaceArea (CompositeShape ss) = sum [ v | v <- map (\s -> surfaceArea s) ss ]
+surfaceArea (CompositeShape ss) = sum $ map surfaceArea ss
 
 data Platform = OpenGL | SVG
 
@@ -28,9 +28,7 @@ render OpenGL (Cylinder baseRadius height) = print "OpenGL: rendering cylinder"
 render OpenGL (Sphere radius) = print "OpenGL: rendering sphere"
 render SVG (Cylinder baseRadius height) = print "SVG: rendering cylinder"
 render SVG (Sphere radius) = print "SVG: rendering sphere"
-render platform (CompositeShape ss) = do
-  sequence [render platform s | s <- ss]
-  return ()
+render platform (CompositeShape ss) = mapM_ (render platform) ss
 
 main :: IO ()
 main = do
