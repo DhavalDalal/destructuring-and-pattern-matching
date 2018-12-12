@@ -1,28 +1,28 @@
 trait Beatable {
-	def beats(other: Beatable): String
+  def beats(other: Beatable): String
 }
 
 case object Paper extends Beatable {
-	override def beats(other: Beatable): String = other match {
-	  case Rock => "paper wins"
+  override def beats(other: Beatable): String = other match {
+    case Rock => "paper wins"
     case Scissor => "paper loses"
     case Paper => "draw"
-	}
+  }
 }
 
 case object Rock extends Beatable {
-	override def beats(other: Beatable): String = other match {
-	  case Rock => "draw"
+  override def beats(other: Beatable): String = other match {
+    case Rock => "draw"
     case Scissor => "rock wins"
     case Paper => "rock loses"
-	}
+  }
 }
 case object Scissor extends Beatable {
-	override def beats(other: Beatable): String = other match {
-	  case Rock => "scissor loses"
+  override def beats(other: Beatable): String = other match {
+    case Rock => "scissor loses"
     case Scissor => "draw"
     case Paper => "scissor wins"
-	}
+  }
 }
 
 val paper = Paper
