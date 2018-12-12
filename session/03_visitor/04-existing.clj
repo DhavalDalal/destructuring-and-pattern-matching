@@ -7,7 +7,7 @@
 (defmethod volume Sphere [{:keys [radius]}] 
   (* (double (/ 4 3)) (. Math PI) (Math/pow radius 3)))
 (defmethod volume clojure.lang.IPersistentVector [shapes]
-  (reduce + 0 (map volume shapes)))
+  (reduce + (map volume shapes)))
 (defmethod volume :default [s] nil)
 
 (defmulti surface-area class)
@@ -18,7 +18,7 @@
 (defmethod surface-area Sphere [{:keys [radius]}] 
   (* 4 (. Math PI) (Math/pow radius 2)))
 (defmethod surface-area clojure.lang.IPersistentVector [shapes]
-  (reduce + 0 (map surface-area shapes)))
+  (reduce + (map surface-area shapes)))
 (defmethod surface-area :default [s] nil)
 
 (def cylinder (Cylinder. 10 10))

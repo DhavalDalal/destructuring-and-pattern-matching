@@ -9,20 +9,20 @@ public class CompositeShape implements Shape3d {
   }
 
   @Override
-	public double surfaceArea() {
+  public double surfaceArea() {
     return Stream.of(shapes).mapToDouble(Shape3d::surfaceArea).sum();
-	}
+  }
   
   @Override
-	public double volume() {
+  public double volume() {
     return Stream.of(shapes).mapToDouble(Shape3d::volume).sum();
-	}
+  }
   
-	public static void main(String[] args) {
-		Shape3d cylinder = new Cylinder(10, 10);
-		Shape3d sphere = new Sphere(10);
+  public static void main(String[] args) {
+    Shape3d cylinder = new Cylinder(10, 10);
+    Shape3d sphere = new Sphere(10);
     Shape3d composite = new CompositeShape(cylinder, sphere);
     System.out.println(composite.surfaceArea());
     System.out.println(composite.volume());
-	}
+  }
 }
