@@ -1,4 +1,4 @@
-trait Beatable {
+sealed trait Beatable {
   def beats(other: Beatable): String
 }
 

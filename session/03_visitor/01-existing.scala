@@ -1,4 +1,4 @@
-trait Shape3d {
+sealed trait Shape3d {
   def surfaceArea(): Double
   def volume(): Double
 }

@@ -1,4 +1,4 @@
-trait Shape3d {
+sealed trait Shape3d {
   def surfaceArea(): Double
   def volume(): Double
 }
@@ -25,7 +25,7 @@ val cylinder = Cylinder(10, 10)
 val composite = CompositeShape(List(cylinder, sphere))
 
 // Creating Plaform Types
-trait Platform
+sealed trait Platform
 case object OpenGL extends Platform
 case object SVG extends Platform
 
