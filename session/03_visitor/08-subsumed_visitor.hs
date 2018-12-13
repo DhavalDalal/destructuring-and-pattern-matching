@@ -21,6 +21,7 @@ surfaceArea (Cylinder baseRadius height) = 2 * baseArea + baseCircumference * he
 surfaceArea (Sphere radius) = 4.0 * pi * radius ^^ 2
 surfaceArea (CompositeShape ss) = sum $ map surfaceArea ss
 
+-- Creating Platform Type
 data Platform = OpenGL | SVG
 
 render :: Platform -> Shape -> IO ()
@@ -34,12 +35,7 @@ main :: IO ()
 main = do
   let cylinder = Cylinder 10 10
   let sphere = Sphere 10
-  print $ "Volume of Cylinder " ++ show (volume cylinder)
-  print $ "Volume of Sphere " ++ show (volume sphere)
   let composite = CompositeShape [cylinder,sphere]
-  print $ "Volume of CompositeShape " ++ show (volume composite)
-  print $ "Surface Area of Cylinder " ++ show (surfaceArea cylinder)
-  print $ "Surface Area of Sphere " ++ show (surfaceArea sphere)
-  print $ "Surface Area of CompositeShape " ++ show (surfaceArea composite)
   render OpenGL composite
   render SVG composite
+  print "DONE"

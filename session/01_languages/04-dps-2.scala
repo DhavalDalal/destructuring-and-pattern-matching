@@ -7,7 +7,6 @@
 // println(rest)
 
 // Destructuring nTuples
-val (p, q, r) = (10, 20, 30)
-println(p)
-println(q)
-println(r)
+val (x, _, z) = (10, 20, 30)
+println(x)
+println(z)

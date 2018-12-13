@@ -23,6 +23,7 @@ surfaceArea(List = [_|_]) ->
 surfaceArea([]) -> 0;
 surfaceArea(_) -> not_ok.
 
+% Creating Plaform Types using atoms
 render(openGL, #cylinder {}) ->
   io:format("~p~n", ["OpenGL: rendering cylinder"]);
 render(openGL, #sphere {}) ->
@@ -40,14 +41,6 @@ main([]) ->
   Cylinder = #cylinder {baseRadius = 10, height = 10},
   Sphere = #sphere {radius = 10},
   Composite = [Cylinder, Sphere],
-  io:format("Volume of Cylinder ~p~n", [volume(Cylinder)]),
-  io:format("Volume of Sphere ~p~n", [volume(Sphere)]),
-  io:format("Volume of Composite ~p~n", [volume(Composite)]),
-  % io:format("Volume of 2 ~p~n", [volume(2)]),
-  io:format("Surface Area of Cylinder ~p~n", [surfaceArea(Cylinder)]),
-  io:format("Surface Area of Sphere ~p~n", [surfaceArea(Sphere)]),
-  io:format("Surface Area of Composite ~p~n", [surfaceArea(Composite)]),
-  % io:format("Surface Area of 2 ~p~n", [surfaceArea(2)]),
   io:format("~p~n", [render(openGL, Composite)]),
   io:format("~p~n", [render(svg, Composite)]),
   io:format("DONE").

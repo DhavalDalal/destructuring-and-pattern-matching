@@ -6,8 +6,7 @@ main = do
   -- print $ first
   -- print $ second
   -- print $ rest
-  let (x,y,z) = (10, 20, 30)
+  let (x,_,z) = (10, 20, 30)
   print $ x
-  print $ y
   print $ z
   print "DONE"

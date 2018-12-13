@@ -15,5 +15,5 @@
 
 (println a-name)
 
-(let [{fname :first lname :last salutation :salutation} a-name]
+(let [{fname :first lname :last} a-name]
   (println fname lname))

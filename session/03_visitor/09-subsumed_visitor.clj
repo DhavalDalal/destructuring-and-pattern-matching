@@ -25,16 +25,7 @@
 (def sphere (Sphere. 10))
 (def composite [cylinder sphere])
 
-(println (volume cylinder)) ; 3141.59
-(println (volume sphere)) ;4188.79
-(println (volume composite)) 
-(println (volume 2)) ;nil
-
-(println (surface-area cylinder)) ;1256.63
-(println (surface-area sphere)) ;1256.63
-(println (surface-area composite)) 
-(println (surface-area 2)) ;nil
-
+; Creating Platform record
 (defrecord OpenGL [])
 (defrecord SVG [])
 

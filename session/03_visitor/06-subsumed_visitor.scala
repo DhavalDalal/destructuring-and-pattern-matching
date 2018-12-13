@@ -23,9 +23,8 @@ case class CompositeShape(shapes: List[Shape3d]) extends Shape3d {
 val sphere = Sphere(10)
 val cylinder = Cylinder(10, 10)
 val composite = CompositeShape(List(cylinder, sphere))
-println(composite.surfaceArea())
-println(composite.volume())
 
+// Creating Plaform Types
 trait Platform
 case object OpenGL extends Platform
 case object SVG extends Platform
@@ -41,3 +40,4 @@ def render(p: Platform, s: Shape3d): Unit = (p, s) match {
 
 render(OpenGL, composite)
 render(SVG, composite)
+println("DONE")
