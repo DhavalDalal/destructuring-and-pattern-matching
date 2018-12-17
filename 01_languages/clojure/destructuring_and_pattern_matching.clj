@@ -27,27 +27,24 @@
 
 ; Idiomatic Clojure does not have pattern matching like that in Scala, 
 ; but we can use multi-methods to achieve that.
-(defmulti mid-point 
+(defmulti distance
   ; Dispatcher Function
   ; Out-of-box Clojure has case - but it does exact match and
   ; hence resorted to cond.  Other option is to use core.match
   ; library (not a part of standard distribution).
   (fn [x y] 
     (cond (= x y [0 0]) [:zero :zero]
-          (= x [0 0]) [:zero :any]
-          (= y [0 0]) [:any :zero]
+          (= x [0 0])   [:zero :any]
+          (= y [0 0])   [:any :zero]
           :else [x y])))
           
-(defmethod mid-point [:zero :zero] [x y] [0 0])
-(defmethod mid-point [:any :zero] [x y] x)
-(defmethod mid-point [:zero :any] [x y] y)
-(defmethod mid-point :default [[x1 y1] [x2 y2]] 
-  (letfn [(mid [[a1 a2]]
-    (double (/ (+ a1 a2) 2)))]
-    [(mid [x1 x2]) (mid [y1 y2])]))
+(defn dist [x y] (Math/sqrt (+ (* x x) (* y y))))   
+(defmethod distance [:zero :zero] [x y] 0)
+(defmethod distance [:any :zero]  [[x1 y1] y] (dist x1 y1))
+(defmethod distance [:zero :any]  [x [x2 y2]] (dist x2 y2))
+(defmethod distance :default [[x1 y1] [x2 y2]] (dist (- x2 x1) (- y2 y1)))
 
-
-(println (mid-point [0 0] [0 0]))
-(println (mid-point [2 3] [0 0]))
-(println (mid-point [0 0] [4 5]))
-(println (mid-point [2 3] [4 5]))
+(println (distance [0 0] [0 0]))
+(println (distance [3 0] [0 0]))
+(println (distance [0 0] [0 4]))
+(println (distance [3 0] [0 4]))

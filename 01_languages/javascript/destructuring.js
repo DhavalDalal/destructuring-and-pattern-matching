@@ -23,13 +23,14 @@ function capitalize({first: firstName, last: lastName}){
 console.info(capitalize(name));
 
 // Destructuring Function params
-function midpoint([x1,y1], [x2,y2] = [0,0]) { 
-  function mid(a1, a2) { return (a1 + a2) / 2; }
-  return [mid(x1, x2), mid(y1, y2)];
+function distance([x1,y1], [x2,y2]){
+  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
-console.info(midpoint([2,3], [4,5]));
-console.info(midpoint([2,3]));
+console.info(distance([0,0], [0,0]))
+console.info(distance([3,0], [0,0]))
+console.info(distance([0,0], [0,4]))
+console.info(distance([3,0], [0,4]))
 
 // No need to show this - skip.
 // Destructuring Map - No direct way
