@@ -11,11 +11,11 @@
           (= y [0 0])   [:any :zero]
           :else [x y])))
 
-(defn dist [x y] (Math/sqrt (+ (* x x) (* y y))))
+(defn pythagorean [x y] (Math/sqrt (+ (* x x) (* y y))))   
 (defmethod distance [:zero :zero] [x y] 0)
-(defmethod distance [:any :zero]  [[x1 y1] y] (dist x1 y1))
-(defmethod distance [:zero :any]  [x [x2 y2]] (dist x2 y2))
-(defmethod distance :default [[x1 y1] [x2 y2]] (dist (- x2 x1) (- y2 y1)))
+(defmethod distance [:any :zero]  [[x1 y1] y]  (pythagorean x1 y1))
+(defmethod distance [:zero :any]  [x [x2 y2]]  (pythagorean x2 y2))
+(defmethod distance :default [[x1 y1] [x2 y2]] (pythagorean (- x2 x1) (- y2 y1)))
 
 (println (distance [0 0] [0 0]))
 (println (distance [3 0] [0 0]))
