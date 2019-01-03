@@ -31,10 +31,10 @@ case object OpenGL extends Platform
 case object SVG extends Platform
 
 def render(p: Platform, s: Shape3d): Unit = (p, s) match {
-  case (OpenGL, Cylinder(baseRadius, height)) => println("OpenGL: rendering cylinder")
-  case (OpenGL, Sphere(radius)) => println("OpenGL: rendering sphere")
-  case (SVG, Cylinder(baseRadius, height)) => println("SVG: rendering cylinder")
-  case (SVG, Sphere(radius)) => println("SVG: rendering sphere")
+  case (OpenGL, c@Cylinder(baseRadius, height)) => println(s"OpenGL: rendering cylinder ${c.surfaceArea()}")
+  case (OpenGL, s@Sphere(radius)) => println(s"OpenGL: rendering sphere ${s.surfaceArea()}")
+  case (SVG, c@Cylinder(baseRadius, height)) => println(s"SVG: rendering cylinder ${c.surfaceArea()}")
+  case (SVG, s@Sphere(radius)) => println(s"SVG: rendering sphere ${s.surfaceArea()}")
   case (_, CompositeShape(shapes)) => shapes.foreach(render(p, _))
   case (_, _) => println()
 }
