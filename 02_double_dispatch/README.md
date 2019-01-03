@@ -1,6 +1,6 @@
 # Double Dispatch
 
-##Problem Statement - Paper, Scissor, Rock
+## Problem Statement - Paper, Scissor, Rock
 
 Two  players  choose  one   of  rock,  paper  and
 scissors after  counting to three and  making one
