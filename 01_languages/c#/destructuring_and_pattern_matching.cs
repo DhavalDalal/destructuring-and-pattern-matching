@@ -35,8 +35,8 @@ class destructuring_and_pattern_matching {
     // Console.WriteLine(first);
     // Console.WriteLine(rest);
 
-    var empty = new List<int>{};
-    var (fst, remaining) = empty; // InvalidOperationException: Sequence contains no elements.
+    // var empty = new List<int>{};
+    // var (fst, remaining) = empty; // InvalidOperationException: Sequence contains no elements.
 
     // var (first, second, rest) = list;
     // Console.WriteLine(first);
