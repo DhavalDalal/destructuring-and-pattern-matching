@@ -5,93 +5,56 @@ using System.Linq;
 
 // In FP, Destructuring is about extracting data from the innards of any structure.
 class destructuring_and_pattern_matching {
-  
-  public static double ComputeArea_Version3(Point p1, Point p2)
-  {
-    var origin = new Point(0, 0);
-    var points = new Tuple<Point, Point>(p1, p2);
-    // var points = new ValueTuple<Point, Point>(pt1: p1, pt2: p2);
-    Console.WriteLine(points.GetType());
-    // var p = (p1, p2);
-      switch (points)
-      {
-          case Tuple<Point, Point> p when ((p.Item1, p.Item2) == (origin, origin)): return 0;
-          // case ValueTuple<Point, Point> p when ((p.pt1, p.pt2) == (origin, origin)): return 0;
-          // case Square s when s.Side == 0:
-          // case Circle c when c.Radius == 0:
-          // case Triangle t when t.Base == 0 || t.Height == 0:
-          // case Rectangle r when r.Length == 0 || r.Height == 0:
-          //     return 0;
-          // case Square s:
-          //     return s.Side * s.Side;
-          // case Circle c:
-          //     return c.Radius * c.Radius * Math.PI;
-          // case Triangle t:
-          //     return t.Base * t.Height / 2;
-          // case Rectangle r:
-          //     return r.Length * r.Height;
-          default:
-              throw new ArgumentException(
-                  message: "shape is not a recognized shape",
-                  paramName: nameof(p1));
-      }
-  }
-  
   public static void Main(string[] args) {
     // Named tuples.
-    var left = (a: 5, b: 10);
-    var right = (a: 5, b: 10);
-    Console.WriteLine(left == right);
-    Console.WriteLine(left != right);
+    // var left = (a: 5, b: 10);
+    // var right = (a: 5, b: 10);
+    // Console.WriteLine(left == right);
+    // Console.WriteLine(left != right);
     
-    // // Destructuring nTuples
-    // var (l, m) = (20, 30);
-    // Console.WriteLine(l);
-    // Console.WriteLine(m);
-    //
-    // var (p, q, r) = (20, 30, 40);
-    // Console.WriteLine(p);
-    // Console.WriteLine(q);
-    // Console.WriteLine(r);
-    //
-    // // Considering first and last, Discarding (with _ ) others
-    // var (a, _, _, d) = (10, 20, 30, 40);
-    // Console.WriteLine(a);
-    // Console.WriteLine(d);
+    // Destructuring nTuples
+    var (l, m) = (20, 30);
+    Console.WriteLine(l);
+    Console.WriteLine(m);
 
-    // // Destructuring list
-    // var list = new List<int>{1, 2, 3, 4, 5, 6};
-    //
-    // // Destructuring gives us a short-hand way of naming parts of the data-structure.
-    // // var (first, rest) = list;
-    // // Console.WriteLine(first);
-    // // Console.WriteLine(rest);
-    //
-    // // var empty = new List<int>{};
-    // // var (first, rest) = empty; // InvalidOperationException: Sequence contains no elements.
-    //
-    // // var (first, second, rest) = list;
-    // // Console.WriteLine(first);
-    // // Console.WriteLine(second);
-    // // Console.WriteLine(rest);
-    //
-    // var (first, second, third, rest) = list;
+    var (q, r, s) = (20, 30, 40);
+    Console.WriteLine(q);
+    Console.WriteLine(r);
+    Console.WriteLine(s);
+
+    // Considering first and last, Discarding (with _ ) others
+    var (a, _, _, d) = (10, 20, 30, 40);
+    Console.WriteLine(a);
+    Console.WriteLine(d);
+
+    // Destructuring list
+    var list = new List<int>{1, 2, 3, 4, 5, 6};
+
+    // Destructuring gives us a short-hand way of naming parts of the data-structure.
+    // var (first, rest) = list;
     // Console.WriteLine(first);
-    // Console.WriteLine(second);
-    // Console.WriteLine(third);
     // Console.WriteLine(rest);
 
-    // // De-structuring a custom type
-    // var name = new Name("Dhaval", "Dalal", "Mr.");
-    // Console.WriteLine(name);
-    // var (firstName, lastName) = name;
-    // Console.WriteLine(firstName);
-    // Console.WriteLine(lastName);
+    var empty = new List<int>{};
+    var (fst, remaining) = empty; // InvalidOperationException: Sequence contains no elements.
 
-    // var (firstName, lastName, salutation) = new Name("");
-    // Console.WriteLine(firstName);
-    // Console.WriteLine(lastName);
-    // Console.WriteLine(salutation);
+    // var (first, second, rest) = list;
+    // Console.WriteLine(first);
+    // Console.WriteLine(second);
+    // Console.WriteLine(rest);
+
+    var (first, second, third, rest) = list;
+    Console.WriteLine(first);
+    Console.WriteLine(second);
+    Console.WriteLine(third);
+    Console.WriteLine(rest);
+
+    // De-structuring a custom type
+    var name = new Name("Dhaval", "Dalal", "Mr.");
+    Console.WriteLine(name);
+    var (firstName, lastName) = name;
+    Console.WriteLine(firstName);
+    Console.WriteLine(lastName);
     
     string Capitalize(Name n) {
       var (fName, lName) = n;
@@ -126,8 +89,7 @@ class destructuring_and_pattern_matching {
 
 // It turns out not only tuples can be deconstructed but any type 
 // which has Deconstruct instance (or extension) method with matching 
-// signature. Doing deconstruction correctly for IEnumerable is not 
-// trivial (see library suggested by David Arno in comments), so let's
+// signature. 
 public static class IEnumerableExtensions {
   public static void Deconstruct<T>(this IEnumerable<T> @this, out T first, out IEnumerable<T> rest) {
     if (@this == null) {
