@@ -144,17 +144,6 @@ public class Point : IEquatable<Point> {
   
   public bool Equals(Point other) => x == other.x && y == other.y;
   
-  //Bring value semantics to class type
-  public static bool operator == (Point left, Point right) {
-      if (ReferenceEquals(left, null)) return false;
-      if (ReferenceEquals(null, right)) return false;
-      if (ReferenceEquals(left, right)) return true;
-      return left.Equals(right);
-  }
-
-  //Bring value semantics to class type
-  public static bool operator !=(Point left, Point right) => !(left == right);
-
   public override bool Equals(object obj) {
       if (ReferenceEquals(null, obj)) return false;
       if (ReferenceEquals(this, obj)) return true;
@@ -169,5 +158,15 @@ public class Point : IEquatable<Point> {
   }
   
   public override string ToString() => $"Point({x}, {y})";
-}
+  
+  //Bring value semantics to class type
+  public static bool operator == (Point left, Point right) {
+      if (ReferenceEquals(left, null)) return false;
+      if (ReferenceEquals(null, right)) return false;
+      if (ReferenceEquals(left, right)) return true;
+      return left.Equals(right);
+  }
 
+  //Bring value semantics to class type
+  public static bool operator !=(Point left, Point right) => !(left == right);
+}
