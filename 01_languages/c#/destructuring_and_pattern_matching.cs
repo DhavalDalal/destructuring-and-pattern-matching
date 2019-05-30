@@ -76,7 +76,7 @@ class destructuring_and_pattern_matching {
       switch ((p1, p2)) {
         case ValueTuple<Point, Point> p when p.Item1 == p.Item2:
           return 0;
-        case ValueTuple<Point, Point> p when (p.Item1 == origin) || (p.Item2 == origin):
+        case var p when (p.Item1 == origin) || (p.Item2 == origin):
           var (x,y) = (p.Item1 == origin)? p.Item2 : p.Item1;
           return Pythagorean(x, y);
         default: 
