@@ -17,41 +17,41 @@ class destructuring_and_pattern_matching {
     Console.WriteLine(l);
     Console.WriteLine(m);
 
-    var (q, r, s) = (20, 30, 40);
-    Console.WriteLine(q);
-    Console.WriteLine(r);
-    Console.WriteLine(s);
+    // var (q, r, s) = (20, 30, 40);
+    // Console.WriteLine(q);
+    // Console.WriteLine(r);
+    // Console.WriteLine(s);
 
     // Considering first and last, Discarding (with _ ) others
-    var (a, _, _, d) = (10, 20, 30, 40);
-    Console.WriteLine(a);
-    Console.WriteLine(d);
+    // var (a, _, _, d) = (10, 20, 30, 40);
+    // Console.WriteLine(a);
+    // Console.WriteLine(d);
 
     // Destructuring list
     // It turns out not only tuples can be deconstructed but any type 
     // which has Deconstruct instance (or extension) method with matching 
     // signature. 
     // Look at IEnumerableExtensions below for Deconstruction of IEnumerables.
-    var list = new List<int>{1, 2, 3, 4, 5, 6};
+    var list = new List<int> { 1, 2, 3, 4, 5, 6 };
 
     // Destructuring gives us a short-hand way of naming parts of the data-structure.
-    // var (first, rest) = list;
-    // Console.WriteLine(first);
-    // Console.WriteLine(rest);
+    var (first, rest) = list;
+    Console.WriteLine(first);
+    Console.WriteLine(rest);
 
-    // var empty = new List<int>{};
+    var empty = new List<int> {};
     // var (fst, remaining) = empty; // InvalidOperationException: Sequence contains no elements.
 
     // var (first, second, rest) = list;
     // Console.WriteLine(first);
     // Console.WriteLine(second);
     // Console.WriteLine(rest);
-
-    var (first, second, third, rest) = list;
-    Console.WriteLine(first);
-    Console.WriteLine(second);
-    Console.WriteLine(third);
-    Console.WriteLine(rest);
+    //
+    // var (first, second, third, rest) = list;
+    // Console.WriteLine(first);
+    // Console.WriteLine(second);
+    // Console.WriteLine(third);
+    // Console.WriteLine(rest);
 
     // De-structuring a custom type
     // Look at the Name class below for Deconstruction.
@@ -69,12 +69,12 @@ class destructuring_and_pattern_matching {
 
     // Deconstructing and Pattern Matching 
     // Look at the Point class below for Deconstruction.
-    double Distance(Point p1, Point p2) {
+    double Distance(ValueTuple<int, int> p1, ValueTuple<int, int> p2) {
       double Pythagorean(double x, double y) => Math.Sqrt(x * x + y * y);
       
-      var origin = new Point(0, 0);
+      var origin = (0, 0);
       switch ((p1, p2)) {
-        case ValueTuple<Point, Point> p when p.Item1 == p.Item2:
+        case var p when p.Item1 == p.Item2:
           return 0;
         case var p when (p.Item1 == origin) || (p.Item2 == origin):
           var (x,y) = (p.Item1 == origin)? p.Item2 : p.Item1;
@@ -85,10 +85,10 @@ class destructuring_and_pattern_matching {
           return Pythagorean(x2 - x1, y2 - y1);
       }
     }
-    Console.WriteLine(Distance(new Point(0,0), new Point(0,0)));
-    Console.WriteLine(Distance(new Point(3,0), new Point(0,0)));
-    Console.WriteLine(Distance(new Point(0,0), new Point(0,4)));
-    Console.WriteLine(Distance(new Point(3,0), new Point(0,4)));
+    Console.WriteLine(Distance((0,0), (0,0)));
+    Console.WriteLine(Distance((3,0), (0,0)));
+    Console.WriteLine(Distance((0,0), (0,4)));
+    Console.WriteLine(Distance((3,0), (0,4)));    
   }
 }
 
@@ -132,41 +132,4 @@ class Name {
   public override string ToString() {
     return $"Name({fName}, {lName}, {salutation})";
   }
-}
-
-public class Point : IEquatable<Point> {
-  private readonly int x;
-  private readonly int y;
-  
-  public Point(int x, int y) => (this.x, this.y) = (x, y);
-  
-  public void Deconstruct(out int x, out int y) => (x, y) = (this.x, this.y);  
-  
-  public bool Equals(Point other) => x == other.x && y == other.y;
-  
-  public override bool Equals(object obj) {
-      if (ReferenceEquals(null, obj)) return false;
-      if (ReferenceEquals(this, obj)) return true;
-      if (obj.GetType() != this.GetType()) return false;
-      return Equals((Point) obj);
-  }
-
-  public override int GetHashCode() {
-    unchecked {
-      return (x*397) ^ y;
-    }
-  }
-  
-  public override string ToString() => $"Point({x}, {y})";
-  
-  //Bring value semantics to class type
-  public static bool operator == (Point left, Point right) {
-      if (ReferenceEquals(left, null)) return false;
-      if (ReferenceEquals(null, right)) return false;
-      if (ReferenceEquals(left, right)) return true;
-      return left.Equals(right);
-  }
-
-  //Bring value semantics to class type
-  public static bool operator !=(Point left, Point right) => !(left == right);
 }
